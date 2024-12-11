@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود با کد تایید</title>
+</head>
+<body>
+<h1>وارد کردن کد تایید</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div style="color:red;">{{ error }}</div>
+        {% endfor %}
+    {% endfor %}
+    <button type="submit">تایید کد</button>
+</form>
+
+</body>
+</html>

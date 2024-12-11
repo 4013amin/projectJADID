@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>ثبت راننده</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+<h1>ثبت راننده جدید</h1>
+{% if success %}
+<p style="color: green;">راننده با موفقیت ثبت شد.</p>
+{% endif %}
+{% if errors %}
+<p style="color: red;">خطا: لطفاً فرم را به درستی پر کنید.</p>
+{% endif %}
+<form method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">ثبت</button>
+</form>
+
+</body>
+</html>
