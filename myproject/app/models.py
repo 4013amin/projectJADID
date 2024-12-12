@@ -6,11 +6,12 @@ class Driver(models.Model):
     username = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=15)
+    route = models.CharField(max_length=100, blank=True, null=True)  # مسیر راننده
     image = models.ImageField(upload_to='images/' , null=True, blank=True)
     vehicle_type = models.CharField(max_length=100, null=True)  # نوع ماشین
     vehicle_model = models.CharField(max_length=100, null=True)  # مدل ماشین
     city = models.CharField(max_length=100)
-    date = models.DateField()
+    date = models.DateField()  # فیلد تاریخ
     approved = models.BooleanField(default=False)
 
     def __str__(self):

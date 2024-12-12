@@ -22,16 +22,18 @@ def formRegister(request):
         return render(request, 'FormDriver.html', {'form': form})
 
 
+from .models import Driver
+from django.shortcuts import render
+from datetime import date, timedelta
+
 def driversList(request):
-    # دریافت تمام رانندگان
     drivers = Driver.objects.all()
-    # دریافت فیلترهای ورودی
     city = request.GET.get('city', '').strip()
     date_filter = request.GET.get('date', '').strip()
 
     # فیلتر بر اساس شهر
     if city:
-        drivers = drivers.filter(city=city)
+        drivers = drivers.filter(route__icontains=city)  # فیلتر بر اساس مسیر
 
     # فیلتر بر اساس تاریخ
     if date_filter == 'today':
@@ -42,3 +44,4 @@ def driversList(request):
         drivers = drivers.filter(date=tomorrow)
 
     return render(request, 'home.html', {'drivers': drivers})
+

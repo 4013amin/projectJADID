@@ -5,8 +5,7 @@
     <title>رانندگان</title>
 </head>
 <body>
-
-<a href="{% url 'register' %}">ثبت نام راننده ها </a>
+    <a href="{% url 'register' %}">ثبت نام راننده‌ها</a>
     <h1>لیست رانندگان</h1>
 
     <!-- فرم برای فیلتر کردن -->
@@ -38,6 +37,7 @@
                 <th>نوع ماشین</th>
                 <th>مدل ماشین</th>
                 <th>شهر</th>
+                <th>مسیر</th>
                 <th>تاریخ</th>
             </tr>
         </thead>
@@ -48,11 +48,12 @@
                     <td>{{ driver.vehicle_type }}</td>
                     <td>{{ driver.vehicle_model }}</td>
                     <td>{{ driver.city }}</td>
+                    <td>{{ driver.route }}</td>
                     <td>{{ driver.date }}</td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">هیچ راننده‌ای پیدا نشد.</td>
+                    <td colspan="6">هیچ راننده‌ای پیدا نشد.</td>
                 </tr>
             {% endfor %}
         </tbody>
