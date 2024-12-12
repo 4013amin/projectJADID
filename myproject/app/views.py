@@ -30,6 +30,7 @@ from .models import Driver
 from django.shortcuts import render
 from datetime import date, timedelta
 
+
 def driversList(request):
     # دریافت تمامی رانندگان
     drivers = Driver.objects.all()
@@ -59,4 +60,3 @@ def driversList(request):
         'city': city,
         'date_filter': date_filter
     })
-
