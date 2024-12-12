@@ -3,6 +3,16 @@ from .models import Driver, Booking
 
 
 class DriverForm(forms.ModelForm):
+
+    CITY_CHOICES = [
+        ('تهران ' , 'تهران'),
+        ('اصفهان', 'اصفهان'),
+        ('شیراز', 'شیراز'),
+        ('مشهد', 'مشهد'),
+    ]
+
+    city = forms.ChoiceField(choices=CITY_CHOICES , label="شهر")
+
     class Meta:
         model = Driver
         fields = ['username','image','city','date', 'phone', 'name' , 'vehicle_model' , 'vehicle_type']
