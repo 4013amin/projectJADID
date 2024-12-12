@@ -5,7 +5,7 @@ from .models import Driver, Booking
 class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
-        fields = ['username', 'phone', 'name' , 'vehicle_model' , 'vehicle_type']
+        fields = ['username','image','city','date', 'phone', 'name' , 'vehicle_model' , 'vehicle_type']
 
 
 class BookingForm(forms.ModelForm):

@@ -1,16 +1,12 @@
-from django.shortcuts import render
-
-from .forms import DriverForm
 from .models import Driver
+from django.shortcuts import render
+from .forms import DriverForm
+from datetime import date, timedelta
 
 
 def index(request):
     drivers = Driver.objects.filter(approved=True)
     return render(request, 'home.html', {'drivers': drivers})
-
-
-from django.shortcuts import render
-from .forms import DriverForm
 
 
 def formRegister(request):
@@ -24,3 +20,25 @@ def formRegister(request):
     else:
         form = DriverForm()
         return render(request, 'FormDriver.html', {'form': form})
+
+
+def driversList(request):
+    # دریافت تمام رانندگان
+    drivers = Driver.objects.all()
+    # دریافت فیلترهای ورودی
+    city = request.GET.get('city', '').strip()
+    date_filter = request.GET.get('date', '').strip()
+
+    # فیلتر بر اساس شهر
+    if city:
+        drivers = drivers.filter(city=city)
+
+    # فیلتر بر اساس تاریخ
+    if date_filter == 'today':
+        today = date.today()
+        drivers = drivers.filter(date=today)
+    elif date_filter == 'tomorrow':
+        tomorrow = date.today() + timedelta(days=1)
+        drivers = drivers.filter(date=tomorrow)
+
+    return render(request, 'home.html', {'drivers': drivers})
